@@ -42,7 +42,7 @@ namespace backgroundImage
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            // Try to get single matching embedded resources in the Images folder
+            // Try to get single matching embedded resource in the Images folder
             var images =
                 this.GetType().Assembly
                 .GetManifestResourceNames()
