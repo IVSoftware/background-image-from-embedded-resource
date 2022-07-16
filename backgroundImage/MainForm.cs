@@ -38,6 +38,26 @@ namespace backgroundImage
                 }
             });
         }
-        Random Rando = new Random(); 
+        Random Rando = new Random();
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            // Get the names of the embedded resources in the Images folder
+            var images =
+                this.GetType().Assembly
+                .GetManifestResourceNames()
+                .Where(name => name.Contains(".Images."))
+                .Where(name => name.ToLower().Contains(textBox1.Text.ToLower()))
+                .ToArray();
+
+            if(images.Length == 1)
+            {
+                // Load the resource into an image and set it as background
+                using (var stream = this.GetType().Assembly.GetManifestResourceStream(images.First()))
+                {
+                    this.BackgroundImage = Image.FromStream(stream);
+                }
+            }
+        }
     }
 }
