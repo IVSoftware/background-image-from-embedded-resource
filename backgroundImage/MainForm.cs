@@ -29,7 +29,7 @@ namespace backgroundImage
             {
                 var raw = images[index];
                 // Parse what you want to go in the Textbox name
-                textBox1.Text = Path.GetFileNameWithoutExtension(raw).Split('.').Last();
+                Map_Text.Text = Path.GetFileNameWithoutExtension(raw).Split('.').Last();
 
                 // Load the resource into an image and set it as background
                 using(var stream = this.GetType().Assembly.GetManifestResourceStream(raw))
@@ -40,14 +40,14 @@ namespace backgroundImage
         }
         Random Rando = new Random();
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void Map_Text_TextChanged(object sender, EventArgs e)
         {
             // Try to get single matching embedded resource in the Images folder
             var images =
                 this.GetType().Assembly
                 .GetManifestResourceNames()
                 .Where(name => name.Contains(".Images."))
-                .Where(name => name.ToLower().Contains(textBox1.Text.ToLower()))
+                .Where(name => name.ToLower().Contains(Map_Text.Text.ToLower()))
                 .ToArray();
 
             if(images.Length == 1)
